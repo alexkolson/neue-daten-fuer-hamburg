@@ -1,4 +1,5 @@
 'use strict';
 
-// start express app
+const staticServer = require('./static-server');
+staticServer();
 // start estimote scanner
