@@ -15,6 +15,10 @@ function startScanning() {
 module.exports = () => {
   startScanning();
 
+  mongoose.connect('mongodb://localhost/hbs-scanner')
+  const locationSchema = new mongoose.Schema({ lat: Number, lng: Number }, { timestamps: true })
+  const Location = mongoose.model('Location', locationSchema);
+
   const app = express();
   app.use(bodyParser.json())
 
@@ -23,8 +27,16 @@ module.exports = () => {
   });
 
   app.post('/location', (req, res) => {
-    console.log(req.body);
-    res.send(200);
+    const { body: { lat, lng } } = req;
+    Location.create({ lat, lng }, (err, location) => {
+      if (err) {
+        console.log('could not save location....oh well.');
+        res.sendStatus(500);
+        return;
+      }
+
+      return res.sendStatus(200);
+    });
   });
 
   app.listen(3002, () => {
