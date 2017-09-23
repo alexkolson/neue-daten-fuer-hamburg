@@ -4,10 +4,13 @@
   "description": "Demo für Mobility Hackathon (mobility-hackathon.de)",
   "main": "index.js",
   "dependencies": {
-    "bleacon": "^0.5.1"
+    "bleacon": "^0.5.1",
+    "express": "^4.15.4",
+    "mongoose": "^4.11.12"
   },
   "devDependencies": {},
   "scripts": {
+    "start": "node .",
     "test": "test"
   },
   "keywords": [
@@ -15,7 +18,5 @@
     "hochban",
     "hvv",
     "beacon"
-  ],
-  "author": "",
-  "license": "ISC"
+  ]
 }
