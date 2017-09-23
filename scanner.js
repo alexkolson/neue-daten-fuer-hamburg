@@ -61,6 +61,10 @@ module.exports = () => {
     res.sendFile('location-watcher.html', { root: __dirname });
   });
 
+  app.get('/heat-map', (req, res) => {
+    res.sendFile('heat-map.html', { root: __dirname });
+  });
+
   app.post('/location', (req, res) => {
     const { body: { lat, lng } } = req;
     Location.create({ lat, lng }, (err, location) => {

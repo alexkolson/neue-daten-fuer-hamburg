@@ -44,6 +44,8 @@ module.exports = () => {
     Object.assign(query, queryParams);
 
     Ping.find(query).sort('-timestamp').exec((err, docs) => {
+      res.header('Access-Control-Allow-Origin', '*');
+      res.header('Access-Control-Allow-Methods', 'GET');
       res.json(docs);
     });
   });
