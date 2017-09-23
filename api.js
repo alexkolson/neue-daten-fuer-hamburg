@@ -33,14 +33,15 @@ module.exports = () => {
       query.timestamp = {
         $gte: queryParams.begin,
       };
+      delete queryParams.begin;
     }
     if (end) {
       query.timestamp = query.timestamp || {};
       query.timestamp.$lt = end;
+      delete queryParams.end;
     }
 
-    delete queryParams.begin;
-    delete queryParams.end;
+    Object.assign(query, queryParams);
 
     Ping.find(query).sort('-timestamp').exec((err, docs) => {
       res.json(docs);
