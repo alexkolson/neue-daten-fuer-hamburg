@@ -14,6 +14,10 @@ module.exports = () => {
     Estimote.discoverAll((estimote) => {
       const { uuid } = estimote;
       Location.find({}).sort('-createdAt').exec((err, docs) => {
+        if (!docs) {
+          return;
+        }
+
         const { lat, lng } = docs[0];
         const date = Date.now();
         request({
@@ -45,7 +49,7 @@ module.exports = () => {
 
   startScanning();
 
-  const connection = mongoose.connect('mongodb://localhost/hbs-scanner')
+  const connection = mongoose.createConnection('mongodb://localhost/hbs-scanner')
   const locationSchema = new mongoose.Schema({ lat: Number, lng: Number }, { timestamps: true })
   const Location = connection.model('Location', locationSchema);
 

@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 module.exports = () => {
-  const connection = mongoose.connect('mongodb://localhost/hbs-api');
+  const connection = mongoose.createConnection('mongodb://localhost/hbs-api');
 
   const pingSchema = new mongoose.Schema({ beacon: String, scanner: String, lat: Number, lng: Number, timestamp: Date });
   const Ping = connection.model('Ping', pingSchema);
