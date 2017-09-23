@@ -3,7 +3,7 @@
 </head>
 
 <body>
-  <h3>Just grabbing your location cause demos are cool</h3>
+  <h3>¯\_(ツ)_/¯ Just grabbing your location cause demos are cool ¯\_(ツ)_/¯</h3>
   <script>
     function watchLocation() {
       if (!'geolocation' in navigator) {
@@ -14,16 +14,16 @@
         const headers = new Headers({
           'Content-Type': 'application/json',
         });
-        const req = new Request({
-          method: 'post',
+        const req = {
+          method: 'POST',
           headers,
-          body: {
+          body: JSON.stringify({
             lat: position.coords.latitude,
             lng: position.coords.longitude,
-          },
-        });
-        fetch(req).then((res) => {
-          console.log(res);
+          }),
+        };
+        fetch('/location', req).then((res) => {
+          document.getElementsByTagName('h3')[0].innerHTML = '(╯°□°）╯︵ ┻━┻ Got your location (╯°□°）╯︵ ┻━┻';
         });
       });
     }
