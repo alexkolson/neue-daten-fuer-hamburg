@@ -7,12 +7,22 @@ const mongoose = require('mongoose');
 module.exports = () => {
   mongoose.connect('mongodb://localhost/hbs-api');
 
+  const pingSchema = new mongoose.Schema({ beacon: String, scanner: String, lat: Number, lng: Number, timestamp: Date });
+  const Ping = mongoose.model('Ping', pingSchema);
+
   const app = express();
   app.use(bodyParser.json());
 
   app.post('/pings', (req, res) => {
-    console.log(req.body);
-    res.sendStatus(200);
+    const { body: { beacon, scanner, lat, lng, timestamp } } = req;
+    Ping.create({ beacon, scanner, lat, lng, timestamp }, (err, ping) => {
+      if (err) {
+        console.log('could not save ping...oh well.');
+        return res.sendStatus(500);
+      }
+
+      res.sendStatus(200);
+    });
   });
 
   // app.get('/:uuid');

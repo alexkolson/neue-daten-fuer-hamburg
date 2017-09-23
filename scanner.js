@@ -18,7 +18,7 @@ module.exports = () => {
         const date = Date.now();
         request({
           method: 'post',
-          uri: 'http://localhost:3000:/pings',
+          uri: 'http://localhost:3000/pings',
           json: {
             beacon: uuid,
             scanner: SCANNER_ID,
