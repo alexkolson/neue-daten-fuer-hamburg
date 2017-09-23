@@ -7,7 +7,8 @@
     "bleacon": "^0.5.1",
     "body-parser": "^1.18.2",
     "express": "^4.15.4",
-    "mongoose": "^4.11.12"
+    "mongoose": "^4.11.12",
+    "request": "^2.82.0"
   },
   "devDependencies": {},
   "scripts": {
