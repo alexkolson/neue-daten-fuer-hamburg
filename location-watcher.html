@@ -1,0 +1,20 @@
+<head>
+  <title>Location Watcher</title>
+</head>
+
+<body>
+  <h3>Just grabbing your location cause demos are cool</h3>
+  <script>
+    function watchLocation() {
+      if (!'geolocation' in navigator) {
+        return;
+      }
+
+      navigator.geolocation.watchPosition((position) => {
+        console.log(postiton);
+      });
+    }
+
+    watchLocation();
+  </script>
+</body>
