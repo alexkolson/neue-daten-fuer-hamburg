@@ -14,7 +14,8 @@ module.exports = () => {
     Estimote.discoverAll((estimote) => {
       const { uuid } = estimote;
       Location.find({}).sort('-createdAt').exec((err, docs) => {
-        if (!docs) {
+        if (docs.length === 0) {
+          console.log('cannot record ping...no location data available yet...na ja.');
           return;
         }
 
