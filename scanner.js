@@ -6,6 +6,8 @@ const mongoose = require('mongoose');
 const request = require('request');
 const Estimote = require('bleacon').Estimote;
 
+const SCANNER_ID = 'HBSDemo';
+
 module.exports = () => {
 
   function startScanning() {
@@ -18,7 +20,8 @@ module.exports = () => {
           method: 'post',
           uri: 'http://localhost:3000:/pings',
           json: {
-            uuid,
+            beacon: uuid,
+            scanner: SCANNER_ID,
             lat,
             lng,
             date,
@@ -69,5 +72,4 @@ module.exports = () => {
   app.listen(3002, () => {
     console.log('scanner started.');
   });
-
 };
