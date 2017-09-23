@@ -6,7 +6,7 @@ module.exports = () => {
   const app = express();
 
   app.get('/location-watcher', (req, res) => {
-    res.sendFile('location-watcher.html');
+    res.sendFile('location-watcher.html', { root: __dirname });
   });
 
   app.listen(3002, () => {
