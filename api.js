@@ -25,6 +25,12 @@ module.exports = () => {
     });
   });
 
+  app.get('/pings', (req, res) => {
+    Ping.find({}).sort('-timestamp').exec((err, docs) => {
+      res.json(docs);
+    });
+  });
+
   // app.get('/:uuid');
 
   app.listen(3000, () => {

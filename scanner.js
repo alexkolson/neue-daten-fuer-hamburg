@@ -20,7 +20,7 @@ module.exports = () => {
         }
 
         const { lat, lng } = docs[0];
-        const date = Date.now();
+        const timestamp = Date.now();
         request({
           method: 'post',
           uri: 'http://localhost:3000/pings',
@@ -29,7 +29,7 @@ module.exports = () => {
             scanner: SCANNER_ID,
             lat,
             lng,
-            date,
+            timestamp,
           },
         }, (err, res, body) => {
           if (err) {
