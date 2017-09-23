@@ -1,7 +1,7 @@
-# Hamburg Bewegt Sich
-Rough english translation: Hamburg moves
+# Neue Daten fuer Hamburg
+Rough english translation: New data for Hamburg
 
-This is a POC for the Hamburg Bewegt Sich project at the 2017 Hochbahn Mobility Hackathon.
+This is a POC for the Neue Daten fuer Hamburg project at the 2017 Hochbahn Mobility Hackathon.
 
 ## Files
 - [`api.js`](api.js): Minimal POC implementation of the API for storing and retrieving pings from all registered becaons in the project.

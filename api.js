@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 module.exports = () => {
-  const connection = mongoose.createConnection('mongodb://localhost/hbs-api');
+  const connection = mongoose.createConnection('mongodb://localhost/ndfh-api');
 
   const pingSchema = new mongoose.Schema({ beacon: String, scanner: String, lat: Number, lng: Number, timestamp: Date });
   const Ping = connection.model('Ping', pingSchema);
@@ -26,7 +26,22 @@ module.exports = () => {
   });
 
   app.get('/pings', (req, res) => {
-    const { query } = req;
+    const { query: queryParams } = req;
+    const query = {};
+    const { begin, end } = queryParams;
+    if (begin) {
+      query.timestamp = {
+        $gte: queryParams.begin,
+      };
+    }
+    if (end) {
+      query.timestamp = query.timestamp || {};
+      query.timestamp.$lt = end;
+    }
+
+    delete queryParams.begin;
+    delete queryParams.end;
+
     Ping.find(query).sort('-timestamp').exec((err, docs) => {
       res.json(docs);
     });

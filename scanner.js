@@ -50,7 +50,7 @@ module.exports = () => {
 
   startScanning();
 
-  const connection = mongoose.createConnection('mongodb://localhost/hbs-scanner')
+  const connection = mongoose.createConnection('mongodb://localhost/ndfh-scanner')
   const locationSchema = new mongoose.Schema({ lat: Number, lng: Number }, { timestamps: true })
   const Location = connection.model('Location', locationSchema);
 
