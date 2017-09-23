@@ -45,9 +45,9 @@ module.exports = () => {
 
   startScanning();
 
-  mongoose.connect('mongodb://localhost/hbs-scanner')
+  const connection = mongoose.connect('mongodb://localhost/hbs-scanner')
   const locationSchema = new mongoose.Schema({ lat: Number, lng: Number }, { timestamps: true })
-  const Location = mongoose.model('Location', locationSchema);
+  const Location = connection.model('Location', locationSchema);
 
   const app = express();
   app.use(bodyParser.json())

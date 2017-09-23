@@ -5,10 +5,10 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 module.exports = () => {
-  mongoose.connect('mongodb://localhost/hbs-api');
+  const connection = mongoose.connect('mongodb://localhost/hbs-api');
 
   const pingSchema = new mongoose.Schema({ beacon: String, scanner: String, lat: Number, lng: Number, timestamp: Date });
-  const Ping = mongoose.model('Ping', pingSchema);
+  const Ping = connection.model('Ping', pingSchema);
 
   const app = express();
   app.use(bodyParser.json());
